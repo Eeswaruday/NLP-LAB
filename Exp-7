@@ -1,0 +1,21 @@
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from collections import Counter
+
+nltk.download('stopwords')
+
+text = """Natural language processing (NLP) is a subfield of computer science, information engineering, 
+and artificial intelligence concerned with the interactions between computers and human languages."""
+
+stop_words = set(stopwords.words('english'))
+tokens = [w.lower() for w in word_tokenize(text) if w.isalpha()]
+
+found_stopwords = [w for w in tokens if w in stop_words]
+print("Stop Words Found:", set(found_stopwords))
+
+non_stop_words = [w for w in tokens if w not in stop_words]
+frequency_dist = Counter(non_stop_words)
+
+print("\nTop Most Frequent Non-Stop Words:")
+print(frequency_dist.most_common(50))
