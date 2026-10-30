@@ -1,0 +1,22 @@
+import nltk
+from nltk.tokenize import word_tokenize, sent_tokenize
+
+text = """Natural Language Processing enables computers to understand human language. 
+It drives applications like translation, chatbots, and search engines.
+
+Tokenization is the first step in text pre-processing. It converts raw text into structured tokens."""
+
+paragraphs = text.strip().split('\n\n')
+sentences = sent_tokenize(text)
+words = word_tokenize(text)
+
+print(f"Number of Paragraphs: {len(paragraphs)}")
+print(f"Number of Sentences: {len(sentences)}")
+print(f"Total Words (Tokens): {len(words)}")
+
+alphabetic_words = [w.lower() for w in words if w.isalpha()]
+total_words = len(alphabetic_words)
+distinct_words = len(set(alphabetic_words))
+
+print(f"Total Alphabetic Words: {total_words}")
+print(f"Distinct Words (Vocabulary Size): {distinct_words}")
