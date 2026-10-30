@@ -1,0 +1,25 @@
+import nltk
+from nltk.corpus import wordnet
+nltk.download('wordnet')
+
+word = "good"
+synonyms, antonyms = set(), set()
+
+for syn in wordnet.synsets(word):
+    for lemma in syn.lemmas():
+        synonyms.add(lemma.name())
+        if lemma.antonyms():
+            antonyms.add(lemma.antonyms()[0].name())
+
+print(f"Synonyms of '{word}':", list(synonyms)[:5])
+print(f"Antonyms of '{word}':", list(antonyms)[:5])
+
+polysemic_word = "bank"
+synsets = wordnet.synsets(polysemic_word)
+
+print(f"\nPolysemy Count (Senses for '{polysemic_word}'): {len(synsets)}")
+for i, syn in enumerate(synsets[:3]):
+    print(f"Sense {i+1} ({syn.name()}): {syn.definition()}")
+
+if synsets:
+    print("\nHyponyms (Specific types) of first sense:", [h.name().split('.')[0] for h in synsets[0].hyponyms()[:5]])
