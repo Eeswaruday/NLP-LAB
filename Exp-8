@@ -1,0 +1,19 @@
+import time
+from nltk.stem import PorterStemmer, LancasterStemmer, SnowballStemmer
+
+words = ["connecting", "connections", "connected", "connection", "connective", "studies", "studying"]
+
+stemmers = {
+    "Porter": PorterStemmer(),
+    "Lancaster": LancasterStemmer(),
+    "Snowball": SnowballStemmer("english")
+}
+
+print(f"{'Algorithm':<12} | {'Time (ms)':<10} | {'Stemmed Results'}")
+print("-" * 65)
+
+for name, stemmer in stemmers.items():
+    start_time = time.perf_counter()
+    results = [stemmer.stem(w) for w in words]
+    elapsed = (time.perf_counter() - start_time) * 1000
+    print(f"{name:<12} | {elapsed:<10.4f} | {results}")
