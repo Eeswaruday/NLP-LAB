@@ -1,0 +1,16 @@
+import nltk
+from nltk.corpus import wordnet
+
+nltk.download('wordnet')
+
+word = input("Enter a word: ")
+synonyms, antonyms = set(), set()
+
+for syn in wordnet.synsets(word):
+    for lemma in syn.lemmas():
+        synonyms.add(lemma.name())
+        for ant in lemma.antonyms():
+            antonyms.add(ant.name())
+
+print("Synonyms:", synonyms)
+print("Antonyms:", antonyms)
