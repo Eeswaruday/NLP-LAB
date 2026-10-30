@@ -1,0 +1,26 @@
+import nltk
+from nltk.util import ngrams
+from collections import Counter
+
+corpus = "the quick brown fox jumps over the lazy dog the quick brown fox disappears"
+tokens = corpus.split()
+
+def generate_ngrams_custom(tokens, n):
+    return [tuple(tokens[i:i+n]) for i in range(len(tokens)-n+1)]
+
+unigrams = generate_ngrams_custom(tokens, 1)
+bigrams_custom = generate_ngrams_custom(tokens, 2)
+trigrams_nltk = list(ngrams(tokens, 3))
+
+print("Sample Bi-grams (Custom):", bigrams_custom[:3])
+print("Sample Tri-grams (NLTK):", trigrams_nltk[:3])
+
+w1 = "quick"
+bigram_counts = Counter(bigrams_custom)
+w1_count = sum(count for bg, count in bigram_counts.items() if bg[0] == w1)
+
+probs = {bg[1]: count / w1_count for bg, count in bigram_counts.items() if bg[0] == w1}
+most_likely_w2 = max(probs, key=probs.get)
+
+print(f"\nProbabilities following '{w1}':", probs)
+print(f"Word with highest probability after '{w1}': '{most_likely_w2}' (p = {probs[most_likely_w2]:.2f})")
