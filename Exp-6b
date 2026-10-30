@@ -1,0 +1,12 @@
+import nltk
+from nltk.corpus import wordnet as wn
+
+nltk.download('wordnet')
+
+word = input("Enter a word: ")
+
+for syn in wn.synsets(word):
+    print("\nMeaning:", syn.definition())
+    print("Hyponyms:", [h.name() for h in syn.hyponyms()])
+    print("Synonyms:", syn.lemma_names())
+    print("Polysemy:", len(wn.synsets(word)), "meanings")
