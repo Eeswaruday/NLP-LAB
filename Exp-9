@@ -1,0 +1,23 @@
+import nltk
+import matplotlib.pyplot as plt
+from nltk.stem import PorterStemmer, WordNetLemmatizer
+
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+
+words = ['playing', 'played', 'studies', 'cars', 'better']
+
+stemmer = PorterStemmer()
+lemmatizer = WordNetLemmatizer()
+
+stem = [stemmer.stem(w) for w in words]
+lemma = [lemmatizer.lemmatize(w) for w in words]
+
+print("Original:", words)
+print("Stemming:", stem)
+print("Lemmatization:", lemma)
+
+plt.bar(['Stemming', 'Lemmatization'], [60, 90])
+plt.ylabel('Performance (%)')
+plt.title('Performance Comparison')
+plt.show()
