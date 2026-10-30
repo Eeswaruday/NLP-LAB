@@ -1,0 +1,29 @@
+import nltk
+from collections import Counter, defaultdict
+
+nltk.download('treebank')
+nltk.download('averaged_perceptron_tagger')
+
+tagged_words = nltk.corpus.treebank.tagged_words()
+
+# (i) POS Tagging Implementation
+sample_text = "The quick brown fox jumps over the lazy dog"
+tokens = nltk.word_tokenize(sample_text)
+pos_tags = nltk.pos_tag(tokens)
+print("POS Tagged Sample:", pos_tags)
+
+# (ii) Word with greatest number of distinct POS tags
+word_to_tags = defaultdict(set)
+for word, tag in tagged_words:
+    word_to_tags[word.lower()].add(tag)
+
+most_ambiguous_word = max(word_to_tags, key=lambda w: len(word_to_tags[w]))
+print(f"\nWord with most distinct tags: '{most_ambiguous_word}' ({len(word_to_tags[most_ambiguous_word])} tags: {word_to_tags[most_ambiguous_word]})")
+
+# (iii) Top 20 Most Frequent POS Tags
+tag_counts = Counter(tag for _, tag in tagged_words)
+print("\nTop 5 Most Frequent Tags:", tag_counts.most_common(5))
+
+# (iv) Most common tags following Nouns (NN/NNS)
+following_tags = [tagged_words[i+1][1] for i in range(len(tagged_words)-1) if tagged_words[i][1].startswith('NN')]
+print("Most frequent tags after Nouns:", Counter(following_tags).most_common(5))
