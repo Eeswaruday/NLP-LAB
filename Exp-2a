@@ -1,0 +1,17 @@
+import nltk
+nltk.download('punkt')
+nltk.download('punkt_tab')
+
+from nltk.tokenize import word_tokenize, sent_tokenize
+
+text = """Python is easy to learn. NLP processes text.
+Tokenization splits text into smaller units."""
+
+# Word Tokenizer
+print("Words:", word_tokenize(text))
+
+# Sentence Tokenizer
+print("Sentences:", sent_tokenize(text))
+
+# Paragraph Tokenizer
+print("Paragraphs:", text.split('\n\n'))
