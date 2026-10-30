@@ -1,0 +1,19 @@
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.probability import FreqDist
+import string
+
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('punkt_tab')
+
+def frequent_words(text):
+    words = word_tokenize(text.lower())
+    stop_words = set(stopwords.words('english'))
+    words = [w for w in words
+             if w not in stop_words and w not in string.punctuation]
+    return FreqDist(words).most_common(50)
+
+text = input("Enter text: ")
+print(frequent_words(text))
