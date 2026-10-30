@@ -1,0 +1,12 @@
+import nltk
+from nltk.collocations import BigramCollocationFinder
+from nltk.metrics import BigramAssocMeasures
+
+nltk.download('punkt')
+nltk.download('punkt_tab')
+
+text = "Natural language processing is useful. Natural language processing uses machine learning."
+words = nltk.word_tokenize(text.lower())
+
+finder = BigramCollocationFinder.from_words(words)
+print(finder.nbest(BigramAssocMeasures.pmi, 5))
