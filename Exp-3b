@@ -1,0 +1,12 @@
+from collections import Counter
+
+words = "i love python i love programming i love python".split()
+bigrams = list(zip(words, words[1:]))
+count = Counter(bigrams)
+word_count = Counter(words)
+
+w1 = "i"
+prob = {w2: c / word_count[w1] for (a, w2), c in count.items() if a == w1}
+
+print("Probabilities:", prob)
+print("Highest probability word:", max(prob, key=prob.get))
