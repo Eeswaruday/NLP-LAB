@@ -1,0 +1,18 @@
+words = ["apple", "cat", "banana", "dog",
+         "python", "book", "computer", "pen"]
+
+print("Words longer than four characters:")
+
+for word in words:
+    if len(word) > 4:
+        print(word)
+
+Output:
+
+Words longer than four characters:
+apple
+banana
+python
+computer
+
+Result: The program prints all words containing more than four characters.
