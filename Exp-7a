@@ -1,0 +1,16 @@
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('punkt_tab')
+
+text = input("Enter text: ")
+
+words = word_tokenize(text.lower())
+stop_words = set(stopwords.words('english'))
+
+found = [word for word in words if word in stop_words]
+
+print("Stop words:", found)
