@@ -1,0 +1,9 @@
+import nltk
+from nltk.corpus import gutenberg
+
+nltk.download('gutenberg')
+
+words = gutenberg.words('austen-emma.txt')
+
+print("Total words:", len(words))
+print("Distinct words:", len(set(words)))
