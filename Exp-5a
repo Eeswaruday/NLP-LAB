@@ -1,0 +1,14 @@
+import re
+
+sentence = input("Enter a sentence: ")
+
+pattern = r'\d+\s*[\+\-\*/]\s*\d+'
+expressions = re.findall(pattern, sentence)
+
+if expressions:
+    print("Mathematical expressions found:")
+    for exp in expressions:
+        print(exp)
+else:
+    print("No mathematical expressions found.")
+
