@@ -1,0 +1,22 @@
+import nltk
+import spacy
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+
+# NLTK resources download
+nltk.download('punkt')
+nltk.download('brown')
+
+# Load spaCy model
+nlp = spacy.load('en_core_web_sm')
+
+text = "Natural Language Processing with NLTK and spaCy is fun and powerful."
+doc = nlp(text)
+
+print("spaCy Tokens:", [token.text for token in doc])
+
+# Generate WordCloud
+wc = WordCloud(width=800, height=400, background_color='white').generate(text)
+plt.imshow(wc)
+plt.axis('off')
+plt.show()
