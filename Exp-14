@@ -1,0 +1,22 @@
+import nltk
+from nltk.corpus import words
+from collections import Counter
+import pandas as pd
+
+nltk.download('words')
+valid_dictionary = set(words.words())
+
+text = "The quick brown fox jumps over the lazy dog. Sum mispelled wurds for testin."
+tokens = nltk.word_tokenize(text)
+
+# (i) Identify misspelled words
+misspelled = [w for w in tokens if w.isalpha() and w.lower() not in valid_dictionary]
+print("Misspelled Words Identified:", misspelled)
+
+# (ii) Frequency table of POS tags for misspelled words
+misspelled_pos = nltk.pos_tag(misspelled)
+tag_counts = Counter(tag for _, tag in misspelled_pos)
+
+df_tags = pd.DataFrame(tag_counts.items(), columns=['POS Tag', 'Frequency'])
+print("\nMisspelled POS Tag Frequency Table:")
+print(df_tags)
