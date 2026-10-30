@@ -1,0 +1,24 @@
+words = ["apple", "application", "apply", "banana",
+         "ball", "bat", "cat", "car"]
+
+prefix = input("Enter the sequence of letters: ")
+
+print("Words starting with", prefix, "are:")
+
+found = False
+
+for word in words:
+    if word.startswith(prefix):
+        print(word)
+        found = True
+
+if not found:
+    print("No words found")
+
+Output:
+
+Enter the sequence of letters: app
+Words starting with app are:
+apple
+application
+apply
